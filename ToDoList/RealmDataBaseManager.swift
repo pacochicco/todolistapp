@@ -20,7 +20,7 @@ class RealmDataBaseManager{
     func create(task: Task){
         do {
             let realm = try Realm()
-            let taskRealm = TaskRealmModel(value: ["_id": task.id, "taskName" : task.taskName, "taskDescription" : task.taskDescription, "isCompleted": task.isCompleted])
+            let taskRealm = TaskRealmModel(value: ["_id": task.id, "taskName" : task.taskName, "taskDescription" : task.taskDescription, "isCompleted": task.isCompleted, "date": task.date])
             try realm.write{
                 realm.add(taskRealm)
             }
@@ -36,7 +36,7 @@ class RealmDataBaseManager{
             let realm = try Realm()
             let tasksFromRealm = realm.objects(TaskRealmModel.self)
             for taskInRealm in tasksFromRealm{
-                let task = Task(id: taskInRealm._id,   taskName: taskInRealm.taskName, taskDescription: taskInRealm.taskDescription, isCompleted: taskInRealm.isCompleted)
+                let task = Task(id: taskInRealm._id,   taskName: taskInRealm.taskName, taskDescription: taskInRealm.taskDescription, isCompleted: taskInRealm.isCompleted, date: taskInRealm.date)
                 tasks.append(task)
             }
             return tasks

@@ -57,8 +57,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCustomCell") as! TaskTableViewCell
         let task = tasks[indexPath.row]
+        let dateformatted = task.date.formatted(date: .numeric, time: .omitted)
         cell.titleLabel.text = task.taskName
         cell.decriptionLabel.text = task.taskDescription
+        cell.dateLabel.text = "\(dateformatted)"
         cell.degelegate = self
         cell.index = indexPath.row
         cell.selectionStyle = .none

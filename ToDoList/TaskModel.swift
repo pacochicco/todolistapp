@@ -14,7 +14,15 @@ struct Task{
     var taskName:String
     var taskDescription:String
     var isCompleted = false
+    let date:Date
     
+    init(id: String, taskName: String, taskDescription: String, isCompleted: Bool = false, date: Date = Date()) {
+        self.id = id
+        self.taskName = taskName
+        self.taskDescription = taskDescription
+        self.isCompleted = isCompleted
+        self.date = date 
+    }
     
     mutating func toggleCompletion() {
         isCompleted = !isCompleted
@@ -26,6 +34,7 @@ class TaskRealmModel: Object{
     @Persisted var taskName:String = ""
     @Persisted var taskDescription: String = ""
     @Persisted var isCompleted:Bool = false
+    @Persisted var date: Date
     
 }
 
